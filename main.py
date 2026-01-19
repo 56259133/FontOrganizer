@@ -4,12 +4,12 @@ import time
 from src.config import AUTO_CLOSE
 from src.archive_utils import extract_and_delete_archives
 from src.font_utils import rename_fonts
-from src.file_cleaner import clean_non_font_files, remove_empty_folders
+from src.file_cleaner import clean_non_font_files, remove_empty_folders, flatten_directory
 
 
 def main():
     print("==========================================")
-    print("      Font Organizer Utility v2.1")
+    print("      Font Organizer Utility v2.2")
     print("==========================================")
 
     # 初始化工作目录
@@ -34,36 +34,37 @@ def main():
                 print(f"创建文件夹失败: {e}")
         else:
             print("错误: 指定的路径不存在。")
-
         time.sleep(2)
         return
 
     print(f"\n开始处理目录: {work_dir}\n")
 
-    # 1. 递归解压并清理压缩包
+    # 1. 解压所有压缩包
     extract_count = extract_and_delete_archives(work_dir)
 
-    # 2. 清理非字体文件 (如图片、说明文档)
+    # 2. 清理非字体文件 (图片、txt等)
     clean_count = clean_non_font_files(work_dir)
 
-    # 3. 字体识别与重命名
+    # 3. 扁平化处理：把子文件夹里的字体全抓出来放到根目录
+    move_count = flatten_directory(work_dir)
+
+    # 4. 字体识别与重命名
     rename_count = rename_fonts(work_dir)
 
-    # 4. 清理空目录
+    # 5. 清理剩下的空文件夹
     folder_count = remove_empty_folders(work_dir)
 
     print("\n==========================================")
-    print("处理完成。统计信息:")
-    print(f"解压数量: {extract_count}")
-    print(f"清理文件: {clean_count}")
-    print(f"重命名数: {rename_count}")
+    print("处理完成。")
+    print(f"   - 解压数量: {extract_count}")
+    print(f"   - 提取字体: {move_count}")
+    print(f"   - 重命名数: {rename_count}")
+    print(f"   - 删空文件夹: {folder_count}")
     print("==========================================")
 
-    # 根据配置决定退出逻辑
     if not AUTO_CLOSE:
         input("按回车键退出程序...")
     else:
-        # 停留简短时间以便用户确认结果，随后自动退出
         time.sleep(1.5)
 
 
