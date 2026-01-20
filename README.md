@@ -1,14 +1,14 @@
-# 🎨 FontOrganizer - 字体自动整理大师
+# 🎨 FontOrganizer - 字体文件重命名整理工具
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 ![Status](https://img.shields.io/badge/Status-Stable-orange.svg)
 
-> **拒绝杂乱！** 一键自动解压、清洗、重命名，让你的字体库井井有条。 ✨
+> **拒绝杂乱！** 一键自动解压、清洗、重命名字体文件或字体压缩包，让你的字体库井井有条。 ✨
 
 ## 📖 项目简介
 
-**FontOrganizer** 是一个基于 Python 的强大自动化工具，专为阅读器用户、字体设计师和字体收藏爱好者打造。它能深入读取字体文件的元数据（Metadata），将它们还原为最纯净的中文或英文名称，并清理一切垃圾信息。
+**FontOrganizer** 是一个基于 Python 的强大自动化工具，专为阅读器用户、字体设计师和字体收藏爱好者打造。它能深入读取字体文件的元数据（Metadata），将它们还原为最纯净的中文或英文名称，并清理其余垃圾信息。
 
 ---
 
@@ -47,3 +47,4 @@ FontOrganizer/
 ├── main.py               # ▶️ 程序启动入口
 ├── requirements.txt      # 📦 依赖库列表
 └── README.md             # 📖 说明文档
+
